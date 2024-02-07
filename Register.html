@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      var dateOfBirth = document.getElementById("dateOfBirth").value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var studentType = document.querySelector('input[name="student"]:checked');
+      var sports = document.getElementById("sports").value;
+
+      if (email === "" || password === "" || confirmPassword === "" || dateOfBirth === "" || !gender || !studentType || sports === "") {
+        alert("Please fill in all fields");
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <form action="registration_handler.php" method="POST" onsubmit="return validateForm()">
+      <h1>Register</h1>
+      <div class="input-box">
+        <input type="email" id="email" placeholder="Student Mail" required>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Create Password" required>
+      </div>
+      <div class="input-box">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      </div>
+      <div class="input-box">
+        <input type="date" id="dateOfBirth" placeholder="Date" required>
+      </div>
+      <div class="input-box">
+        <label>
+          Gender: 
+          <input type="radio" name="gender" value="MALE"> Male
+        </label>
+        <label>
+          <input type="radio" name="gender" value="FEMALE"> Female
+        </label>
+      </div>
+      <div class="input-box">
+        <label>
+          Student: 
+          <input type="radio" name="student" value="Hosteller"> Hosteller
+        </label>
+        <label>
+          <input type="radio" name="student" value="Day-scholar"> Day-Scholar
+        </label>
+      </div>
+      <div class="input-box">
+        <label for="sports">Select a sport:</label>
+        <select id="sports" name="sports">
+          <option value="football">Football</option>
+          <option value="basketball">Basketball</option>
+          <option value="tennis">Tennis</option>
+          <option value="cricket">Cricket</option>
+          <!-- Add more sports as needed -->
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn">Register</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
